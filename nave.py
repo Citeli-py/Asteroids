@@ -41,18 +41,41 @@ class Nave:
             else:
                 bala.render()
 
-    def move(self, ): # Precisa de aceleração
+    def lerp(self, A, B, t):
+        return [A[0] + t*(B[0]-A[0]), A[1] + t*(B[1]-A[1])]
+
+    def fogo(self, ):
+        P, Q, R = self.getPontos()
+        cos0, sin0 = cos(self.theta), sin(self.theta)
+        r = 60
+        d = 5
+        t = 0.75
+
+        P1 = self.lerp(Q, R, t)
+        P1 = [P1[0]-d*cos0, P1[1]-d*sin0]
+
+        P2 = self.lerp(R, Q, t)
+        P2 = [P2[0]-d*cos0, P2[1]-d*sin0]
+
+        M = [P[0]-r*cos0, P[1]-r*sin0]
+
+        pg.draw.polygon(self.tela, "red", [M, P1, P2], 2)
+
+    def move(self, ):
         keys = pg.key.get_pressed()
         dt=1
         vmax = 2
         if keys[pg.K_w]:
+            cos0, sin0 = cos(self.theta), sin(self.theta)
 
-            self.vel[0] += cos(self.theta)*dt/50
-            self.vel[1] -= sin(self.theta)*dt/50
+            self.vel[0] += cos0*dt/50
+            self.vel[1] -= sin0*dt/50
 
             if self.norm(self.vel) > vmax:
-                self.vel[0] = vmax*cos(self.theta)
-                self.vel[1] = -vmax*sin(self.theta)
+                self.vel[0] = vmax*cos0
+                self.vel[1] = -vmax*sin0
+
+            self.fogo()
 
         if keys[pg.K_a]:
             self.theta -= 0.05
@@ -64,7 +87,7 @@ class Nave:
             self.p = [1280/2, 720/2]
             self.vel = [0, 0]
 
-        if keys[pg.K_SPACE] and self.timerTiro>=50:
+        if keys[pg.K_SPACE] and self.timerTiro>=30:
             self.dispara()
 
         self.timerTiro +=1

@@ -1,6 +1,5 @@
 import pygame as pg
-from math import sin, cos, pi
-
+from math import sin, cos
 
 class Tiro:
 

@@ -1,6 +1,6 @@
 import pygame
 from nave import Nave
-from tiro import Tiro
+from asteroid import Asteroid
 
 # pygame setup
 pygame.init()
