@@ -100,4 +100,7 @@ class Nave:
         for bala in self.balas:
             bala.render()
         
+        self.p[0] = self.p[0]%self.tela.get_width()
+        self.p[1] = self.p[1]%self.tela.get_height()
+        
         pg.draw.polygon(self.tela, "white", self.getPontos(), 2)

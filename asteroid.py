@@ -1,5 +1,6 @@
 import pygame as pg
 from math import sin, cos
+from tiro import Tiro
 
 class Asteroid:
 
@@ -15,10 +16,15 @@ class Asteroid:
         self.pos[0] += self.vel*cos(self.theta)
         self.pos[1] -= -self.vel*sin(self.theta)
 
-    def colide(self, ):
-        pass
-
+    def colide(self, bala: Tiro):
+        if bala.pos[0] <= (self.pos[0]+self.raio) and bala.pos[0] >= (self.pos[0]-self.raio):
+            if bala.pos[1] <= (self.pos[1]+self.raio) and bala.pos[1] >= (self.pos[1]-self.raio):
+                return True
+            
+        return False
 
     def render(self, ):
         self.move()
+        self.pos[0] = self.pos[0]%self.tela.get_width()
+        self.pos[1] = self.pos[1]%self.tela.get_height()
         pg.draw.circle(self.tela, "white", self.pos, self.raio, 2) # Melhorar
