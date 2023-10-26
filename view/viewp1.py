@@ -7,6 +7,7 @@ def run(screen : pygame.Surface, clock: pygame.time.Clock):
     running = True
 
     c = Controlador(screen)
+    texto = Texto(f"Pontuação: {c.getPontuacao()}", 30, (150, 50), "white", screen)
 
     while running:
         for event in pygame.event.get():
@@ -19,7 +20,6 @@ def run(screen : pygame.Surface, clock: pygame.time.Clock):
         if(c.naveDestruida()):
             return GAMEOVER
         else:
-            texto = Texto(f"Pontuação: {c.getPontuacao()}", 30, (150, 50), "white", screen)
             texto.draw()
 
         pygame.display.flip()
