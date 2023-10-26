@@ -9,6 +9,8 @@ def run(screen : pygame.Surface, clock: pygame.time.Clock):
     running = True
     modo = 0
 
+    titulo = Texto("GAME OVER", 72, (640, 200), 'green', screen)
+    t1 = Texto("Aperte ENTER para retornar ao menu", 26, (640, 400), 'green', screen)
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -19,10 +21,7 @@ def run(screen : pygame.Surface, clock: pygame.time.Clock):
                 if event.key == pygame.K_RETURN:
                     running = False
 
-        titulo = Texto("GAME OVER", 72, (640, 200), 'green', screen)
         titulo.draw()
-
-        t1 = Texto("Aperte ENTER para retornar ao menu", 26, (640, 400), 'green', screen)
         t1.draw()
 
         pygame.display.flip()

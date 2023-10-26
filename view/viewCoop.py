@@ -20,11 +20,8 @@ def run(screen : pygame.Surface, clock: pygame.time.Clock):
         
         else:
             pontuacao = c.getPontuacao()
-            textoP1 = Texto(f"Pontuação P1: {pontuacao[0]}", 30, (150, 50), "white", screen)
-            textoP1.draw()
-
-            textoP2 = Texto(f"Pontuação P2: {pontuacao[1]}", 30, (1100, 50), "white", screen)
-            textoP2.draw()
+            Texto(f"Pontuação P1: {pontuacao[0]}", 30, (150, 50), "white", screen).draw()
+            Texto(f"Pontuação P2: {pontuacao[1]}", 30, (1100, 50), "white", screen).draw()
 
         pygame.display.flip()
         clock.tick(60)  # limits FPS to 60
