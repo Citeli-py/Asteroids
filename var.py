@@ -1,0 +1,6 @@
+EXIT = -1
+GAMEOVER = 0
+START = 1
+SOLO = 2
+COOP = 3
+VERSUS = 4
